@@ -1,0 +1,21 @@
+rhbase_firewall_allow_services: [http,https]
+
+mariadb_databases:
+  - name: wp_db
+
+mariadb_users:
+  - name: wp_user
+    password: CorkIgWac
+    priv: '*.*:ALL,GRANT'
+
+mariadb_root_password: fogMeHud8    
+
+wordpress_database: wp_db
+
+wordpress_user: wp_user
+
+wordpress_password: CorkIgWac
+
+httpd_ssl_certificate_key_file: 'privateKey.key'
+
+httpd_ssl_certificate_file: 'csrKey.crt'

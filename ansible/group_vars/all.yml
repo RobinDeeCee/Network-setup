@@ -1,0 +1,30 @@
+rhbase_firewall_allow_services: [samba,ftp]  
+
+rhbase_repositories:
+  - epel-release
+rhbase_install_packages:
+  - bash-completion
+  - bind-utils
+  - git
+  - nano
+  - tree
+  - vim-enhanced
+  - wget
+  - dhcp
+
+rhbase_admin_user: robin
+
+rhbase_users:
+  - name: robin
+    groups:
+      - wheel
+    password: $1$k7h1lx4J$SA6F2KU5YlCIOmYUVG5oX/  
+   
+rhbase_motd: true
+
+rhbase_ssh_user: robin
+
+rhbase_ssh_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDHt83ZZZS32c0Jj9fYv30bqjBhEb61I9KJSA73z1c5uJwh+VyQzMfKoW5ZA3C53332gz7P4mQRJEsBB0j4vVnDTLe001WY6+4ISTSIIDEKVT+1eMG4qawyp7r6Dfwb3IeNNS/25PfMz9BHLEYAI4bW7rx5/CkpzYRDIReKeUuD5DuAIoMs8wg71cni4KN1V4OoUox91HTpJGYu6CLhbl6jCj/7YYvLXt8fB2DYCRJbrgsMTRfpfDc/xpPpzq6W07irrERRpSXAt+eW9+R3qO/cpS9I/GNv+sFx9GD7+uB3nb1Tuo/pHp4t/eSO+Gg99W7X6o9DPMzDNAGug7BxOcKFWTuvmMr7tX/9xz7N6/jVGcqwmrN1jQ6Fcc2XqCyO/nYnHL3tAdvAds+EMfe61ilcMGUZOub8oC0KiddJCG4rcAb3nU6TdQOBpT9devQZqGnDrNL04OpVuC7pDlPGhtmWV7lE+cTeFIXtBg2/TfD/WC9A+1kJ7TSoLdZBK1hEX7cpdm5VY2i3+2iK+ny4jeVphd7YLeI4QiaXfG0furtNUbIy6DxyDq/X059m1KUY7hXzo1uBzmtkySjgTEcCyPjC4+GXKQF4LHEKYw3es2gly0oWL2fJdQe1YvE8AEeOcoXELnq6lHd4BmtvyIuArrwJPTknqSdQDDrFpIEmZlGHPQ== robin.decock.y6890@student.hogent.be
+
+rhbase_selinux_state: enforcing
+

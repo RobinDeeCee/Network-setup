@@ -1,0 +1,201 @@
+rhbase_firewall_allow_services: [samba,ftp]  
+
+samba_netbios_name: FILES
+
+samba_workgroup: AVALON
+
+samba_shares_root: /srv/shares
+
+samba_load_homes: true
+
+vsftpd_anonymous_enable: false
+
+# vsftpd_anon_root: /srv/shares
+
+vsftpd_local_root: /srv/shares
+
+vsftpd_local_enable: true
+
+vsftpd_write_enable: true
+
+samba_shares:
+  - name: public
+    comment: 'publieke map'
+    public: 'yes'
+    write_list: +employees
+    group: employees
+    browseable: 'yes' 	
+    writable: 'yes'
+    directory_mode: '0775'
+    
+  - name: management
+    comment: 'management map'
+    write_list: +management
+    public : "no"
+    valid_users: +management
+    group: management
+    directory_mode: '0770'
+
+  - name: technical
+    comment: 'technical map'
+    write_list: +technical
+    public : "no"
+    valid_users: +management,+sales,+it,+technical
+    group: technical
+    directory_mode: '0775'
+
+  - name: sales
+    comment: 'sales map'
+    write_list: +sales
+    public : "no"
+    valid_users: +sales,+management
+    group: sales
+    browseable: 'yes'
+    writable: 'no'
+    directory_mode: '0770'
+
+  - name: it
+    comment: 'it map'
+    write_list: +it
+    public : "no"
+    valid_users: +it,+management
+    group: it
+    directory_mode: '0770'
+
+
+rhbase_user_groups:
+  - management
+  - technical
+  - sales
+  - it
+  - employees
+
+rhbase_users:
+- name: robin
+  comment: 'administrator'
+  password: '$1$FhbR0AF5$4rChbfx9RGTCq6Zwbtn3f/'
+  groups: [ it,wheel,employees ]
+  shell: /bin/bash
+
+- name: stevenh
+  comment: Steven Hermans
+  password: '$1$sah1RYH2$kcBwZs4LHHT6cmBki52Rb/'
+  groups: [ management,employees ]
+ 
+- name: stevenv
+  comment: Steven Van Daele
+  password: '$1$PFnMWbyU$mojIml7YMg7vXxbhRGW0s/'
+  groups: [ technical,employees ]
+ 
+- name: leend
+  comment: Leen De Meester
+  password: '$1$34YZTccU$pTBk2Q4DjtJwORphr5KgO/'
+  groups: [ technical,employees ]
+
+- name: svena
+  comment: Sven Aerens
+  password: '$1$h/bVeCzk$5eFtVm9X/9IUMZmolACh.0'
+  groups: [ sales,employees ]
+ 
+- name: nehirb
+  comment: Nehir Başar
+  password: '$1$iPP6jZbP$MMd1Y4YWQ52xcL9oTfobg.'
+  groups: [ it,employees ]
+ 
+- name: alexanderd
+  comment: Alexander De Coninck
+  password: '$1$Hg68NX5Z$2MVCr4Z95FYUnwHS47Qpo/'
+  groups: [ technical,employees ]
+ 
+- name: krisv
+  comment: Kris Vanhaverbeke
+  password: '$1$FR51C8md$d0FwFs.VdbmpxgtsiSD.P1'
+  groups: [ management,employees ]
+ 
+- name: benoitp
+  comment: Benoit Pluquet
+  password: '$1$xKufUCO6$OF4qcPkcBRDMpkfwd7iwD/'
+  groups: [ sales,employees ]
+ 
+- name: anc
+  comment: An Coppens
+  password: '$1$LSVk.zZ/$8OXjINRJelFAWdWyMyWxU.'
+  groups: [ technical,employees ]
+ 
+- name: elenaa
+  comment: Elena Andreev
+  password: '$1$DnEEkALp$vh1NPHOuWpW7lKfc6/3Jk/'
+  groups: [ management,employees ]
+ 
+- name: evyt
+  comment: Evy Tilleman
+  password: '$1$PkBSMiq5$5SsNJvQPVyGrfqWKHjDeY/'
+  groups: [ technical,employees ]
+ 
+- name: christophev
+  comment: Christophe Van der Meersche
+  password: '$1$582kWCMA$7Jm.c4VH9SuniR/RdNW/7.'
+  groups: [ it,employees ]
+ 
+- name: stefaanv
+  comment: Stefaan Vernimmen
+  password: '$1$lK8K.cUo$9WsmxYpgjtPaKUYGeenED0'
+  groups: [ technical,employees ]
+
+
+samba_users:
+
+- name: robin
+  password: robin
+
+- name: stevenh
+  password: stevenh
+ 
+- name: stevenv
+  password: stevenv
+ 
+- name: leend
+  password: leend
+ 
+- name: svena
+  password: svena
+ 
+- name: nehirb
+  password: nehirb
+ 
+- name: alexanderd
+  password: alexanderd
+ 
+- name: krisv
+  password: krisv
+ 
+- name: benoitp
+  password: benoitp
+ 
+- name: anc
+  password: anc
+ 
+- name: elenaa
+  password: elenaa
+ 
+- name: evyt
+  password: evyt
+ 
+- name: christophev
+  password: christophev
+ 
+- name: stefaanv
+  password: stefaanv
+
+
+vsftpd_extra_permissions:
+  - folder: "/srv/shares/sales"
+    entity: "management"
+    etype: "group"
+    permissions: "r-x"
+
+  - folder: "/srv/shares/it"
+    entity: "management"
+    etype: "group"
+    permissions: "r-x"
+ 
